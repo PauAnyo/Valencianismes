@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  
+  <!-- SEO -->
+  <title>Valencianismes — Descobreix el tresor del nostre vocabulari</title>
+  <meta name="description" content="Aprén una paraula típica valenciana cada dia. Paraules autèntiques, definicions i traduccions al castellà. Descobreix la riquesa del vocabulari valencià.">
+  <meta name="keywords" content="valencià, valencianismes, paraules, vocabulari, llengua, diccionari, aprenentatge, cultura valenciana">
+  <meta name="author" content="Valencianismes">
+  <meta name="theme-color" content="#C06B3E">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Valencianismes">
+  <meta property="og:description" content="Descobreix una paraula típica valenciana cada dia amb la seua definició i traducció.">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon / Logotip de la pestanya -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Valencianismes">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Background Pattern -->
+  <div class="bg-pattern" aria-hidden="true"></div>
+  
+  <!-- Splash Screen -->
+  <div class="splash" id="splash" role="status" aria-label="Carregant">
+    <img src="icon-192.png" alt="" class="splash__icon" onerror="this.style.display='none'">
+    <h1 class="splash__title">Valencianismes</h1>
+    <p class="splash__subtitle">Carregant el tresor...</p>
+  </div>
+  
+  <!-- Main App -->
+  <main class="app" id="app" role="main">
+    <!-- Content rendered by app.js -->
+  </main>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Scripts -->
+  <script src="paraules.js"></script>
+  <script src="app.js"></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
