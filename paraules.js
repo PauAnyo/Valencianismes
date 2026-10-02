@@ -1569,6 +1569,70 @@ const PARAULES = [
     exemple: "Posa les forquetes a l'esquerra del plat per a parar la taula.",
     castella: "Tenedor",
     nota: "Del llatí 'furca' (forca)"
+  },
+  {
+    paraula: "Comboi",
+    categoria: "Substantiu",
+    definicio: "Festa, reunió molt alegre, gresca o activitat col·lectiva organitzada entre amics o veïns amb gran il·lusió i entusiasme (expressió 'fer comboi').",
+    exemple: "Quin comboi que han muntat per a preparar la paella de diumenge!",
+    castella: "Jolgorio / Fiesta / Entusiasmo festivo",
+    nota: "Un dels conceptes més autèntics i identitaris del caràcter valencià"
+  },
+  {
+    paraula: "Desfici",
+    categoria: "Substantiu",
+    definicio: "Sensació forta d'intranquil·litat, desassossec, picor o negit intern que no deixa parar quiet a algú.",
+    exemple: "Tinc un desfici que no em deixa dormir en tota la nit amb tanta calor.",
+    castella: "Desasosiego / Inquietud / Desazón",
+    nota: "Molt utilitzat per a descriure la incomoditat física o mental"
+  },
+  {
+    paraula: "Bac",
+    categoria: "Substantiu",
+    definicio: "Caiguda forta, violenta i sobtada a terra; colp contundent sofert en caure per una entropessada o relliscada.",
+    exemple: "Ha pegat un bac baixant l'escala que s'ha fet un blau al genoll.",
+    castella: "Porrazo / Batacazo / Caída fuerte",
+    nota: "Molt típic en l'expressió 'pegar-se un bac'"
+  },
+  {
+    paraula: "Basca",
+    categoria: "Substantiu",
+    definicio: "Sensació de xafogor asfixiant, calor intensa i humitat opressiva que ofega i produeix gran cansament o abatiment.",
+    exemple: "A mitjan agost a la platja fa una basca que no es pot ni respirar.",
+    castella: "Bochorno / Sofoco / Calor sofocante",
+    nota: "Típica de les vesprades humides d'estiu al litoral valencià"
+  },
+  {
+    paraula: "Manifasser",
+    categoria: "Adjectiu / Substantiu",
+    definicio: "Persona tafanera, xafardera i entremeliada que té el costum de ficar-se en els afers dels altres sense que ningú li ho demane.",
+    exemple: "No sigues tan manifasser i deixa que cadascú faça la seua feina.",
+    castella: "Entrometido / Fisgón / Cazolero",
+    nota: "Paraula molt expressiva i quotidiana"
+  },
+  {
+    paraula: "Milotxa",
+    categoria: "Substantiu",
+    definicio: "Joguina volant feta amb una estructura lleugera de canya o fusta coberta de paper de seda o plàstic, que s'enlaira al cel sostinguda per un fil empentada pel vent.",
+    exemple: "Per Pasqua anirem a la platja a volar la milotxa i menjar-nos la mona.",
+    castella: "Cometa",
+    nota: "Sinònim tradicional de 'catxerulo', propi de Pasqua a moltes comarques"
+  },
+  {
+    paraula: "Volantí",
+    categoria: "Substantiu",
+    definicio: "Tombarella que es fa rodant pel terra o botant per l'aire de cap a peus; també, estri de pesca tradicional amb cordill i plom.",
+    exemple: "El xiquet ha pegat un volantí damunt l'herba del parc.",
+    castella: "Voltereta / Aparejo de pesca",
+    nota: "Molt emprat en l'expressió 'pegar un volantí'"
+  },
+  {
+    paraula: "Sompo",
+    categoria: "Adjectiu / Substantiu",
+    definicio: "Persona poc espavilada, lenta de reflexos, fava o malfeinera que sembla no assabentar-se de les coses.",
+    exemple: "Espavila un poc, que estàs fet un sompo i el tren està a punt d'eixir!",
+    castella: "Pasmarote / Lento / Zonzo",
+    nota: "Paraula genuïna i col·loquial valenciana"
   }
 ];
 

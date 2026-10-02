@@ -1,4 +1,4 @@
-const CACHE_NAME = 'valencianismes-v7';
+const CACHE_NAME = 'valencianismes-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -17,10 +17,10 @@ const ASSETS_TO_CACHE = [
 
 // Install - Cache essential assets with relative paths
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(ASSETS_TO_CACHE))
-      .then(() => self.skipWaiting())
   );
 });
 
