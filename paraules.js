@@ -1545,6 +1545,30 @@ const PARAULES = [
     exemple: "Posa una bona pastanaga al caldo per a donar-li dolçor.",
     castella: "Zanahoria",
     nota: ""
+  },
+  {
+    paraula: "Glaçó",
+    categoria: "Substantiu",
+    definicio: "Tros menut de gel de forma cúbica o arredonida que s'afig a les begudes per a refredar-les ràpidament.",
+    exemple: "Posa-li un parell de glaçons al café del temps.",
+    castella: "Cubito de hielo",
+    nota: "De 'glaç' (gel)"
+  },
+  {
+    paraula: "Ulleres",
+    categoria: "Substantiu",
+    definicio: "Instrument òptic format per dues lents muntades en una armadura que es recolza al nas i a les orelles per a corregir defectes de visió o protegir els ulls del sol.",
+    exemple: "No trobe les ulleres de sol i en este carrer fa molta claror.",
+    castella: "Gafas",
+    nota: "De 'ull' (ojo)"
+  },
+  {
+    paraula: "Forqueta",
+    categoria: "Substantiu",
+    definicio: "Eina o cobert de taula amb mànec i tres o quatre pues que serveix per a punxar i portar el menjar a la boca o subjectar-lo en tallar-lo.",
+    exemple: "Posa les forquetes a l'esquerra del plat per a parar la taula.",
+    castella: "Tenedor",
+    nota: "Del llatí 'furca' (forca)"
   }
 ];
 
