@@ -12,6 +12,10 @@ class ValencianismesApp {
     this.isShowingToday = true;
     this.musicPlaying = false;
     this.musicStarted = false;
+    this.deferredPrompt = null;
+    this.isStandalone = window.matchMedia('(display-mode: standalone)').matches || ('standalone' in navigator && navigator.standalone);
+    this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    this.installBannerDismissed = false;
   }
 
   init() {
@@ -116,7 +120,7 @@ class ValencianismesApp {
     }
   }
 
-  // Renderitza tota l'app
+  // Renderitza l'esquelet inicial de l'app
   render() {
     const appEl = document.getElementById('app');
     const word = this.currentWord;
@@ -138,13 +142,13 @@ class ValencianismesApp {
         <span>${this.isShowingToday ? 'Paraula del dia · ' : 'Paraula aleatòria · '}${this.getFormattedDate()}</span>
       </div>
 
-      <div id="installBanner" class="install-banner hidden">
+      <div id="installBanner" class="install-banner ${(!this.isStandalone && !this.installBannerDismissed) ? '' : 'hidden'}">
         <div class="install-banner__text">
           <div class="install-banner__title">📲 Instal·la l'app</div>
           <div class="install-banner__desc">Afig-la a la pantalla d'inici per accedir ràpidament</div>
         </div>
         <button class="install-banner__btn" id="installBtn">Instal·lar</button>
-        <button class="install-banner__close" id="installClose">&times;</button>
+        <button class="install-banner__close" id="installClose" aria-label="Tancar">&times;</button>
       </div>
 
       <article class="word-card" id="wordCard">
@@ -207,20 +211,69 @@ class ValencianismesApp {
   showRandom() {
     this.currentWord = this.getRandomWord();
     this.isShowingToday = false;
-    this.render();
-    
-    // Anima la targeta
-    const card = document.getElementById('wordCard');
-    card.classList.add('animate-in');
+    this.updateCard();
   }
 
   showToday() {
     this.currentWord = this.todayWord;
     this.isShowingToday = true;
-    this.render();
-    
+    this.updateCard();
+  }
+
+  // Actualitza només la targeta i la data (mantenint visible el bàner d'instal·lació)
+  updateCard() {
+    const dateBanner = document.getElementById('dateBanner');
+    if (dateBanner) {
+      dateBanner.innerHTML = `
+        <span class="date-banner__icon">📅</span>
+        <span>${this.isShowingToday ? 'Paraula del dia · ' : 'Paraula aleatòria · '}${this.getFormattedDate()}</span>
+      `;
+    }
+
+    const btnToday = document.getElementById('btnToday');
+    if (btnToday) {
+      btnToday.style.opacity = this.isShowingToday ? '0.5' : '1';
+      btnToday.style.pointerEvents = this.isShowingToday ? 'none' : 'auto';
+    }
+
     const card = document.getElementById('wordCard');
-    card.classList.add('animate-in');
+    if (card) {
+      const word = this.currentWord;
+      card.classList.remove('animate-in');
+      void card.offsetWidth; // Força el reflow per a rellançar l'animació de transició
+      
+      card.innerHTML = `
+        <div class="deco-mosaic deco-mosaic--1"></div>
+        <div class="deco-mosaic deco-mosaic--2"></div>
+        
+        <span class="word-card__category">${word.categoria}</span>
+        
+        <h2 class="word-card__word">${word.paraula}</h2>
+        
+        <div class="word-card__translation">
+          <span class="word-card__translation-icon">🇪🇸</span>
+          <span>${word.castella}</span>
+        </div>
+        
+        <div class="word-card__divider"></div>
+        
+        <div class="word-card__definition-label">Definició</div>
+        <p class="word-card__definition">${word.definicio}</p>
+        
+        <div class="word-card__example">
+          <div class="word-card__example-label">Exemple</div>
+          <p class="word-card__example-text">«${word.exemple}»</p>
+        </div>
+        
+        ${word.nota ? `
+        <div class="word-card__note">
+          <span class="word-card__note-icon">📝</span>
+          <span>${word.nota}</span>
+        </div>
+        ` : ''}
+      `;
+      card.classList.add('animate-in');
+    }
   }
 
   hideSplash() {
@@ -235,52 +288,83 @@ class ValencianismesApp {
 
   // PWA Install Prompt
   setupPWAInstall() {
-    let deferredPrompt = null;
-
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      deferredPrompt = e;
-      
-      const banner = document.getElementById('installBanner');
-      if (banner) {
-        banner.classList.remove('hidden');
-      }
+      this.deferredPrompt = e;
+      this.updateInstallBanner();
     });
 
-    // Delegated event listeners for install banner
     document.addEventListener('click', (e) => {
       if (e.target.id === 'installBtn' || e.target.closest('#installBtn')) {
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then(() => {
-            deferredPrompt = null;
-            const banner = document.getElementById('installBanner');
-            if (banner) banner.classList.add('hidden');
-          });
-        }
+        this.handleInstallClick();
       }
       
       if (e.target.id === 'installClose' || e.target.closest('#installClose')) {
+        this.installBannerDismissed = true;
         const banner = document.getElementById('installBanner');
         if (banner) banner.classList.add('hidden');
       }
+
+      if (e.target.id === 'installHelpClose' || e.target.closest('#installHelpClose') || e.target.id === 'installHelpBackdrop') {
+        const modal = document.getElementById('installHelpModal');
+        if (modal) modal.remove();
+      }
     });
 
-    // Show iOS install instructions
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-    
-    if (isIOS && !isStandalone) {
-      setTimeout(() => {
-        const banner = document.getElementById('installBanner');
-        if (banner) {
-          banner.classList.remove('hidden');
-          const desc = banner.querySelector('.install-banner__desc');
-          const btn = banner.querySelector('.install-banner__btn');
-          if (desc) desc.textContent = 'Prem Compartir ⬆ i "Afegir a pantalla d\'inici"';
-          if (btn) btn.style.display = 'none';
-        }
-      }, 3000);
+    this.updateInstallBanner();
+  }
+
+  updateInstallBanner() {
+    if (this.isStandalone || this.installBannerDismissed) return;
+
+    const banner = document.getElementById('installBanner');
+    if (!banner) return;
+
+    banner.classList.remove('hidden');
+
+    if (this.isIOS) {
+      const desc = banner.querySelector('.install-banner__desc');
+      const btn = banner.querySelector('.install-banner__btn');
+      if (desc) desc.textContent = 'Prem Compartir ⬆ i "Afegir a pantalla d\'inici"';
+      if (btn) btn.style.display = 'none';
     }
+  }
+
+  handleInstallClick() {
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          this.deferredPrompt = null;
+          this.installBannerDismissed = true;
+          const banner = document.getElementById('installBanner');
+          if (banner) banner.classList.add('hidden');
+        }
+      });
+    } else {
+      this.showInstallHelpModal();
+    }
+  }
+
+  showInstallHelpModal() {
+    const existing = document.getElementById('installHelpModal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'installHelpModal';
+    modal.className = 'install-modal';
+    modal.innerHTML = `
+      <div class="install-modal__backdrop" id="installHelpBackdrop"></div>
+      <div class="install-modal__content">
+        <h3 class="install-modal__title">📲 Com instal·lar Valencianismes</h3>
+        <ul class="install-modal__list">
+          <li><strong>Android (Chrome):</strong> Prem el menú de tres punts (⋮) a dalt i selecciona <em>«Afegeix a la pantalla d'inici»</em> o <em>«Instal·la l'aplicació»</em>.</li>
+          <li><strong>iPhone / iPad (Safari):</strong> Prem el botó Compartir (fletxa cap amunt ⬆️) i tria <em>«Afegeix a la pantalla d'inici»</em>.</li>
+          <li><strong>Ordinador (Chrome / Edge):</strong> Fes clic a la icona d'instal·lar (ordinador amb fletxa ⬇️) a la barra d'adreces.</li>
+        </ul>
+        <button class="btn btn--primary install-modal__btn" id="installHelpClose">D'acord</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
   }
 }
