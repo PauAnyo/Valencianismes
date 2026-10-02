@@ -434,12 +434,12 @@ const PARAULES = [
     nota: "Paraula molt expressiva i popular"
   },
   {
-    paraula: "Almorzar",
+    paraula: "Esmorzar",
     categoria: "Verb",
-    definicio: "Fer el primer àpat del matí o el d'a mitjan matí. En la tradició valenciana és un àpat contundent a mig matí.",
-    exemple: "Anem a almorzar un entrepà de llonganissa al bar.",
-    castella: "Desayunar / Almorzar (a media mañana)",
-    nota: "L'esmorzar valencià és una institució"
+    definicio: "Prendre el tradicional àpat de mig matí, autèntic ritual sagrat i pilar gastronòmic del poble valencià, habitualment amb entrepà, cacaus del collaret, tramussos i cremaet.",
+    exemple: "Hui dissabte anem a esmorzar un bon entrepà de blanc i negre amb faves.",
+    castella: "Desayunar / Almorzar a media mañana",
+    nota: "L'esmorzar és una de les grans tradicions de la cultura valenciana"
   },
   {
     paraula: "Terròs",
@@ -594,12 +594,12 @@ const PARAULES = [
     nota: "D'origen germànic"
   },
   {
-    paraula: "Aücar",
+    paraula: "Sucre",
     categoria: "Substantiu",
-    definicio: "Substància dolça, cristal·lina i blanca que s'extrau de la canya de sucre o de la remolatxa.",
-    exemple: "Posa-li una culleradeta d'aücar al café.",
+    definicio: "Substància dolça i cristal·lina que s'obté de la canya de sucre o de la remolatxa, indispensable en la rebosteria tradicional valenciana.",
+    exemple: "Posa-li una culleradeta de sucre al café.",
     castella: "Azúcar",
-    nota: "D'origen àrab 'as-súkkar'"
+    nota: "Del llatí 'succarum', d'origen àrab"
   },
   {
     paraula: "Escopinyar",
@@ -618,12 +618,12 @@ const PARAULES = [
     nota: "De 'ferro' (hierro)"
   },
   {
-    paraula: "Sarnaüa",
+    paraula: "Dragó",
     categoria: "Substantiu",
-    definicio: "Rèptil menut, de cos pla i àgil, amb potes curtes i cua llarga, que s'enfila per les parets amb facilitat.",
-    exemple: "Hi ha una sarnaüa al sostre de l'habitació.",
-    castella: "Salamanquesa / Lagartija",
-    nota: "Paraula d'origen incert"
+    definicio: "Rèptil menut, inofensiu i nocturn de cos aplanat i color grisós, amb dits proveïts de ventoses adhesives que li permeten grimpar amb agilitat per parets i sostres caçant mosquits.",
+    exemple: "A l'estiu sempre hi ha un dragó a la paret de la terrassa.",
+    castella: "Salamanquesa",
+    nota: "Animalet molt típic i beneficiós a les terres valencianes"
   },
   {
     paraula: "Petxina",
@@ -979,10 +979,10 @@ const PARAULES = [
     nota: ""
   },
   {
-    paraula: "Garofa",
+    paraula: "Clavell",
     categoria: "Substantiu",
-    definicio: "Flor ornamental de colors vius i variats, amb pètals retallats i una olor intensa i agradable.",
-    exemple: "La iaia sempre tenia garofes al balcó.",
+    definicio: "Flor ornamental molt viva, de pètals dentats i olor dolça i penetrant, molt estimada als patis i balcons tradicionals valencians.",
+    exemple: "La iaia sempre tenia testos de clavells al balcó.",
     castella: "Clavel",
     nota: ""
   },
@@ -1315,12 +1315,12 @@ const PARAULES = [
     nota: "Cultiu exclusiu de l'Horta valenciana"
   },
   {
-    paraula: "Llepolia",
+    paraula: "Batzulla",
     categoria: "Substantiu",
-    definicio: "Dolç, caramel o llaminadura. Qualsevol cosa dolça que fa gola. S'usa també com a adjectiu per a algú golafre de dolços.",
-    exemple: "Porta'm alguna llepolia de la botiga de dolços.",
-    castella: "Golosina / Chuchería",
-    nota: "De 'llepar' (lamer)"
+    definicio: "Festa animada, gresca, rebombori o reunió molt alegre i sorollosa entre amics o veïns.",
+    exemple: "Quina batzulla tenien muntada ahir a la nit al casal faller!",
+    castella: "Jaleo / Jarana / Gresca",
+    nota: "Paraula molt festiva i popular"
   },
   {
     paraula: "Rebost",
@@ -1331,12 +1331,12 @@ const PARAULES = [
     nota: "Del llatí 'repositum'"
   },
   {
-    paraula: "Obrir",
-    categoria: "Verb",
-    definicio: "Desclòure una cosa tancada, separar allò que impedeix el pas o l'accés. Destapar, descloure.",
-    exemple: "Obri la finestra, que fa molta calor ací dins.",
-    castella: "Abrir",
-    nota: ""
+    paraula: "Badall",
+    categoria: "Substantiu",
+    definicio: "Obertura involuntària i ampla de la boca produïda per la son, la fatiga, l'avorriment o la gana.",
+    exemple: "Se li escapava un badall rere l'altre durant la classe de matemàtiques.",
+    castella: "Bostezo",
+    nota: "Del llatí 'badare' (estar amb la boca oberta)"
   },
   {
     paraula: "Emboirar-se",
